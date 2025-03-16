@@ -31,13 +31,17 @@ class Board:
     def check_valid_move(self, row_coordinate: int, column_coordinate: int) -> bool:
         """Checks whether a player has made a valid move"""
         current_move = (row_coordinate, column_coordinate)
-        if self.the_board[current_move] is None:
-            return True
+        if (row_coordinate <= self.rows) and (column_coordinate <= self.columns):
+            if self.the_board[current_move] is None:
+                return True
+            else:
+                return False
         else:
             return False
 
     def check_board_full(self) -> bool:
-        """Checks whether the board is currently full or not"""
+        """Checks whether the board is currently full or not. Returns False is not full and True
+        otherwise."""
         for value in self.the_board.values():
             if value is None:
                 return False

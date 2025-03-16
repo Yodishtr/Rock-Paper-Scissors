@@ -1,5 +1,7 @@
 """An entity representing the Game being played by players or player and AI on a board
 of their choosing"""
+import random
+
 from Entities.Board import Board
 from Entities.Player import Player
 from Entities.Symbol import Symbol
@@ -14,6 +16,8 @@ class Game:
         self.player2 = player2
         self.board = board
         self.current_turn = 0
+        random.seed()
+        self.game_id = random.random()
 
     def check_winning_combo(self) -> Symbol | None:
         # check rows for same symbol

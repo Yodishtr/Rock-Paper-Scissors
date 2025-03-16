@@ -17,4 +17,4 @@ class Player:
         self.name = name
         self.symbol = symbol
 
-    #make a use case for making moves by a player
+    #make a use case for making moves by a human player and ai player
