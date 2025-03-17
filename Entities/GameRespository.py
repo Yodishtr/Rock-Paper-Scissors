@@ -21,6 +21,8 @@ class GameRepository(ABC):
         """returns a game from the repository"""
         pass
 
+
+
     @abstractmethod
     def delete_game(self, game_id: str | int) -> None:
         """Deletes a game from the game repository."""

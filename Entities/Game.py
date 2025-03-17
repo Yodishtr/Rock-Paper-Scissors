@@ -16,8 +16,16 @@ class Game:
         self.player2 = player2
         self.board = board
         self.current_turn = 0
+        self.current_player = player1
         random.seed()
         self.game_id = random.random()
+
+    def switch(self) -> None:
+        """Switches turn from current player to other player"""
+        if self.current_player == self.player1:
+            self.current_player = self.player2
+        else:
+            self.current_player = self.player1
 
     def check_winning_combo(self) -> Symbol | None:
         # check rows for same symbol

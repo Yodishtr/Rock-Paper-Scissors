@@ -13,8 +13,9 @@ class Player:
     name: str
     symbol: Symbol
 
-    def __init__(self, name: str, symbol: Symbol ):
+    def __init__(self, name: str, symbol: Symbol):
         self.name = name
         self.symbol = symbol
+
 
     #make a use case for making moves by a human player and ai player
