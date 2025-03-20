@@ -26,8 +26,8 @@ class CreateInteractor:
                                                       self.player2[1], self.player1[0],
                                                       self.player2[0], self.player1[2],
                                                       self.player2[2])
-        player1 = Player(self.player1[1], self.player1[2])
-        player2 = Player(self.player2[1], self.player2[2])
+        player1 = Player(self.player1[1], self.player1[2], self.player1[0])
+        player2 = Player(self.player2[1], self.player2[2], self.player2[0])
         new_game = Game.Game(player1, player2, new_board)
         self.game_repo.save_game(new_game)
 
