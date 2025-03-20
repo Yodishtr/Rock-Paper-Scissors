@@ -6,7 +6,6 @@ from Entities.Player import Player
 class HumanPlayer(Player):
     """A Player object being a human playing the game. """
 
-    def __init__(self, name: str, symbol: Symbol, type: str):
-        self.name = name
-        self.symbol = symbol
+    def __init__(self, name: str, symbol: Symbol):
+        Player.__init__(name, symbol)
         self.type = "human"
