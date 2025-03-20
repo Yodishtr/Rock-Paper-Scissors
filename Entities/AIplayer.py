@@ -12,12 +12,11 @@ class AIPlayer(Player):
         Player.__init__(name, symbol, race)
         self.strategy = strategy
 
-    def choose_move(self, game: Game):
+    def choose_move(self, game: Game) -> Tuple[int, int]:
         """calls the appropriate method based on strategy chosen by the human player."""
         if self.strategy.lower() == "minimax":
             move = self.minimax_strategy(game)
-            game_board = game.board.the_board
-            game_board[move] = self.symbol
+            return move
 
         # else:
             # self.neural_net_strategy(game)
