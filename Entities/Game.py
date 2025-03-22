@@ -28,6 +28,7 @@ class Game:
             self.current_player = self.player1
 
     def check_winning_combo(self) -> Symbol | None:
+        """checks winning combo and returns the symbol associated with winning"""
         # check rows for same symbol
         winning_length = self.board.rows
         for row in range(1, self.board.rows + 1):
@@ -43,7 +44,6 @@ class Game:
                 return first_row_symbol
             else:
                 continue
-
 
         # check columns for same symbol
         for col in range(1, self.board.columns + 1):
@@ -76,7 +76,6 @@ class Game:
         if count_left_diag == winning_length:
             return first_diag_symbol
 
-
         # check right diagonal (from top right to bottom left)
         arr2_of_tuples = []
         sum_coordinates = self.board.rows + 1
@@ -97,3 +96,9 @@ class Game:
 
         else:
             return None
+
+    def restart(self) -> None:
+        """Restarts the game preserving the players' symbols and names while resetting the board."""
+        for keys in self.board.the_board:
+            self.board.the_board[keys] = None
+        self.current_turn = 0

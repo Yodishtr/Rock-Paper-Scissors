@@ -1,5 +1,6 @@
 """Interactor for AI move use case."""
 from App.UseCase_Interactors.AIMove import AIMoveInputData
+from App.UseCase_Interactors.AIMove.AIMoveOutputData import AIOutputData
 from Entities.GameRespository import GameRepository
 
 
@@ -11,7 +12,7 @@ class AIMoveInteractor:
         self.game_repo = game_repo
         self.game_id = aiInputData.game_id
 
-    def execute_ai_move(self) -> None:
+    def execute_ai_move(self) -> AIOutputData | None:
         """Makes the ai move on the board based on the strategy chosen by the human player for
         the Ai player"""
         current_game = self.game_repo.find_game(self.game_id)
@@ -19,7 +20,12 @@ class AIMoveInteractor:
         if curr_player.race.lower() == "ai":
             move_to_make = curr_player.choose_move(current_game)
             current_game.board.the_board[move_to_make] = curr_player.symbol
+            ai_win_or_no = current_game.check_winning_combo()
+            check_draw = current_game.board.check_board_full()
             self.game_repo.save_game(current_game)
-            print("Ai made its move")
-        else:
-            print("wrong order of methods. it should be the humans turn")
+            if ai_win_or_no == curr_player.symbol:
+                return AIOutputData(move_to_make, True, False)
+            elif ai_win_or_no is None and check_draw:
+                return AIOutputData(move_to_make, False, True)
+            elif ai_win_or_no is None and (not check_draw):
+                return AIOutputData(move_to_make, False, False)
