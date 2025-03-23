@@ -6,7 +6,8 @@ class CGInputData:
     created"""
 
     def __init__(self, board_row: int, board_column: int, player1type: str, player2type: str,
-                 player1name: str, player2name: str, player1sym: str, player2sym: str) -> None:
+                 player1name: str, player2name: str, player1sym: str, player2sym: str,
+                 strategy: str) -> None:
         self.board_row = board_row
         self.board_column = board_column
         self.player1type = player1type
@@ -21,3 +22,4 @@ class CGInputData:
             self.player2name = "AI"
         self.player1symbol = player1sym
         self.player2symbol = player2sym
+        self.strategy = strategy

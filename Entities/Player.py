@@ -10,13 +10,11 @@ class Player:
         name: the name of the player
         symbol: the symbol of the player
     """
-    name: str
-    symbol: Symbol
 
     def __init__(self, name: str, symbol: Symbol, race: str):
         self.name = name
-        self.symbol = symbol
+        if symbol.upper() == "X":
+            self.symbol = Symbol(symbol)
+        else:
+            self.symbol = Symbol(symbol)
         self.race = race
-
-
-    #make a use case for making moves by a human player and ai player

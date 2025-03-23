@@ -3,31 +3,39 @@ from App.UseCase_Interactors.CreateGame import CGInputData, CGOutputData
 from Entities import Game
 from Entities.Board import Board
 from Entities.GameRespository import GameRepository
+from Entities.AIplayer import AIPlayer
 from Entities.Player import Player
 
 
 class CreateInteractor:
     """Interactor for creating a new game."""
 
-    def __init__(self, input_data: CGInputData, game_repo: GameRepository) -> None:
+    def __init__(self, game_repo: GameRepository) -> None:
         """holds the input data and creates a new game accordingly"""
-        self.rows = input_data.board_row
-        self.columns = input_data.board_column
-        self.player1 = (input_data.player1type, input_data.player1name, input_data.player1symbol)
-        self.player2 = (input_data.player2type, input_data.player2name, input_data.player2symbol)
         self.game_repo = game_repo
 
-    def create_new_game_output(self) -> CGOutputData:
+    def create_new_game(self, input_data: CGInputData) -> CGOutputData:
         """Creates a new game from the input data. Transforms and returns basic data to output data
         """
-        new_board = Board(self.rows, self.columns)
+
+        new_board = Board(input_data.board_row, input_data.board_column)
         board_dict_map = new_board.the_board
-        final_output_data = CGOutputData.CGOutputData(board_dict_map, self.player1[1],
-                                                      self.player2[1], self.player1[0],
-                                                      self.player2[0], self.player1[2],
-                                                      self.player2[2])
-        player1 = Player(self.player1[1], self.player1[2], self.player1[0])
-        player2 = Player(self.player2[1], self.player2[2], self.player2[0])
+        player1_tup = (input_data.player1type, input_data.player1name, input_data.player1symbol)
+        player2_tup = (input_data.player2type, input_data.player2name, input_data.player2symbol)
+        final_output_data = CGOutputData.CGOutputData(board_dict_map, player1_tup[1],
+                                                      player2_tup[1], player1_tup[0],
+                                                      player2_tup[0], player1_tup[2],
+                                                      player2_tup[2])
+        if player1_tup[0].lower() == "ai":
+            player1 = AIPlayer(player1_tup[1], player1_tup[2], player1_tup[0], input_data.strategy)
+            player2 = Player(player2_tup[1], player2_tup[2], player2_tup[0])
+        elif player2_tup[0].lower() == "ai":
+            player1 = Player(player1_tup[1], player1_tup[2], player1_tup[0])
+            player2 = AIPlayer(player1_tup[1], player1_tup[2], player1_tup[0], input_data.strategy)
+        else:
+            player1 = Player(player1_tup[1], player1_tup[2], player1_tup[0])
+            player2 = Player(player1_tup[1], player1_tup[2], player1_tup[0])
+
         new_game = Game.Game(player1, player2, new_board)
         self.game_repo.save_game(new_game)
 
