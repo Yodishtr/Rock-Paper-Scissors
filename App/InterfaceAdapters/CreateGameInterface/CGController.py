@@ -1,4 +1,5 @@
 """Controller class exclusively for the create game use case"""
+from App.InterfaceAdapters.CreateGameInterface import CGPresenter
 from App.UseCase_Interactors.CreateGame import CreateInteractor
 from App.UseCase_Interactors.CreateGame.CGInputData import CGInputData
 
@@ -6,8 +7,9 @@ from App.UseCase_Interactors.CreateGame.CGInputData import CGInputData
 class CGController:
     """Defines a controller for the create game use case with methods to control data flow"""
 
-    def __init__(self, createInteractor: CreateInteractor) -> None:
+    def __init__(self, createInteractor: CreateInteractor, createpresenter: CGPresenter) -> None:
         self.createInteractor = createInteractor
+        self.createPresenter = createpresenter
 
     def handle_create_new(self):
         """Executes the create new game method through the interactor and relays the output data
