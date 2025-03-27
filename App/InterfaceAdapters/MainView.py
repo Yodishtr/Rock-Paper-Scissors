@@ -17,6 +17,8 @@ class MainView():
         self.restart_game_presenter = restart_presenter
         self.screen = screen
         self.cell_size = 100
+        self.player1_info = None
+        self.player2_info = None
         self.font = pygame.font.SysFont(None, 64)
 
     def render_board_and_players(self, board_map: dict[tuple[int, int]], player1name: str,
@@ -55,4 +57,15 @@ class MainView():
         info_surface = self.font.render(info_str, True, (0, 0, 0))
         self.screen.blit(info_surface, (10, max_row * self.cell_size + 10))
 
+        self.player1_info = (player1name, player1type, player1symbol)
+        self.player2_info = (player2name, player2type, player2symbol)
+
         pygame.display.flip()
+
+    def display_human_move(self, row_coord, column_coord, game_state, symbol, board_map):
+        """Displays the move made by human player on the screen"""
+        if row_coord and column_coord:
+            self.render_board_and_players(board_map, self.player1_info[0], self.player2_info[0],
+                                          self.player1_info[2], self.player2_info[2],
+                                          self.player1_info[1], self.player2_info[1])
+            if

@@ -23,14 +23,22 @@ class HMInteractor:
             curr_player = game_playing.current_player
             curr_player_symbol = curr_player.symbol
             game_playing.board.the_board[(row, col)] = curr_player_symbol
+            new_board_map = game_playing.board.the_board
             win_or_not = game_playing.check_winning_combo()
             if win_or_not:
                 output_object = HMOutputData.HMOutputData(row, col, is_move_valid,
-                                                          win_or_not)
+                                                          win_or_not, curr_player_symbol,
+                                                          new_board_map)
+                self.game_repo.save_game(game_playing)
+                return output_object
+            else:
+                output_object = HMOutputData.HMOutputData(row, col, is_move_valid,
+                                                          win_or_not, curr_player_symbol,
+                                                          new_board_map)
                 self.game_repo.save_game(game_playing)
                 return output_object
 
         else:
             print("Move is invalid: Enter a valid move within board size")
-            output_object = HMOutputData.HMOutputData(row, col, is_move_valid, False)
+            output_object = HMOutputData.HMOutputData(row, col, is_move_valid, False, None, None)
             return output_object

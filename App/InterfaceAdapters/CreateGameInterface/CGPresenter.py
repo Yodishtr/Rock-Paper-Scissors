@@ -20,3 +20,6 @@ class CGPresenter:
         player2_symbol = self.output_data.player2Sym
         player1_type = self.output_data.player1type
         player2_type = self.output_data.player2type
+        self.main_view.render_board_and_players(board_game_map, player1_name, player2_name,
+                                                player1_symbol, player2_symbol, player1_type,
+                                                player2_type)
