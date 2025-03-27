@@ -22,10 +22,7 @@ class CreateInteractor:
         board_dict_map = new_board.the_board
         player1_tup = (input_data.player1type, input_data.player1name, input_data.player1symbol)
         player2_tup = (input_data.player2type, input_data.player2name, input_data.player2symbol)
-        final_output_data = CGOutputData.CGOutputData(board_dict_map, player1_tup[1],
-                                                      player2_tup[1], player1_tup[0],
-                                                      player2_tup[0], player1_tup[2],
-                                                      player2_tup[2])
+
         if player1_tup[0].lower() == "ai":
             player1 = AIPlayer(player1_tup[1], player1_tup[2], player1_tup[0], input_data.strategy)
             player2 = Player(player2_tup[1], player2_tup[2], player2_tup[0])
@@ -37,6 +34,11 @@ class CreateInteractor:
             player2 = Player(player1_tup[1], player1_tup[2], player1_tup[0])
 
         new_game = Game.Game(player1, player2, new_board)
+        id_game_created = new_game.game_id
+        final_output_data = CGOutputData.CGOutputData(board_dict_map, player1_tup[1],
+                                                      player2_tup[1], player1_tup[0],
+                                                      player2_tup[0], player1_tup[2],
+                                                      player2_tup[2], id_game_created)
         self.game_repo.save_game(new_game)
 
         return final_output_data
