@@ -68,4 +68,8 @@ class MainView():
             self.render_board_and_players(board_map, self.player1_info[0], self.player2_info[0],
                                           self.player1_info[2], self.player2_info[2],
                                           self.player1_info[1], self.player2_info[1])
-            if
+        elif (not row_coord) and (not column_coord):
+            print("Invalid Move")
+
+    def display_ai_move(self):
+        """Displays move made by the AI"""
