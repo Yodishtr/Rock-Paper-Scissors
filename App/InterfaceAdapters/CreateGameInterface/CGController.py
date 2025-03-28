@@ -39,3 +39,4 @@ class CGController:
                                  strategy)
 
         output_data = self.createInteractor.create_new_game(input_data)
+        self.createPresenter.present(output_data)

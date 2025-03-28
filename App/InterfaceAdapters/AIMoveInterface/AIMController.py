@@ -17,3 +17,4 @@ class AIController():
         """Receives the move made by the ai and calls the presenter with the output data"""
         input_data = AIMoveInputData(self.id_game)
         output_data = self.ai_interactor.execute_ai_move(input_data)
+        self.ai_presenter.present_ai_move(output_data)

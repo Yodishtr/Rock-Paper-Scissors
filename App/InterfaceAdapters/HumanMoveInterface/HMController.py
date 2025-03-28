@@ -17,6 +17,7 @@ class HMController:
         user_input = self._convert_to_board(mouse_x, mouse_y)
         input_data = HMInputData.HMInputData(user_input[0], user_input[1], self.game_id)
         output_data = self.interactor.human_make_move(input_data)
+        self.presenter.present(output_data)
 
     def _convert_to_board(self, mouse_x, mouse_y) -> tuple[int, int]:
         """Converts mouse input into the board map coordinates"""
