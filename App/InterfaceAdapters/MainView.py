@@ -64,12 +64,23 @@ class MainView():
 
     def display_human_move(self, row_coord, column_coord, game_state, symbol, board_map):
         """Displays the move made by human player on the screen"""
-        if row_coord and column_coord:
-            self.render_board_and_players(board_map, self.player1_info[0], self.player2_info[0],
+        if game_state:
+            print("motherfucker you won")
+        else:
+            if row_coord and column_coord:
+                self.render_board_and_players(board_map, self.player1_info[0], self.player2_info[0],
+                                              self.player1_info[2], self.player2_info[2],
+                                              self.player1_info[1], self.player2_info[1])
+            elif (not row_coord) and (not column_coord):
+                print("Invalid Move")
+
+    def display_ai_move(self, win_or_not, draw_or_not, updated_board):
+        """Displays move made by the AI"""
+        if win_or_not:
+            print("Ai won lmao")
+        elif draw_or_not:
+            print("damn you smart as the ai")
+        else:
+            self.render_board_and_players(updated_board, self.player1_info[0], self.player2_info[0],
                                           self.player1_info[2], self.player2_info[2],
                                           self.player1_info[1], self.player2_info[1])
-        elif (not row_coord) and (not column_coord):
-            print("Invalid Move")
-
-    def display_ai_move(self):
-        """Displays move made by the AI"""
