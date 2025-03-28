@@ -10,3 +10,5 @@ class RestartPresenter():
 
     def present(self, output_data: RGOutputData):
         """presents the output data"""
+        cleared_board_map = output_data.board_map
+        self.main_view.display_restarted_game(cleared_board_map)

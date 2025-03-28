@@ -19,3 +19,4 @@ class RestartController():
         """handles the resetting of the game"""
         restart_input_data_object = RGInputData(self.game_id)
         output_data = self.restart_interactor(restart_input_data_object)
+        self.restart_presenter.present(output_data)

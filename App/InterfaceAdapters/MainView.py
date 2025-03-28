@@ -84,3 +84,9 @@ class MainView():
             self.render_board_and_players(updated_board, self.player1_info[0], self.player2_info[0],
                                           self.player1_info[2], self.player2_info[2],
                                           self.player1_info[1], self.player2_info[1])
+
+    def display_restarted_board(self, cleared_board_map):
+        """displays a cleared board_map"""
+        self.render_board_and_players(cleared_board_map, self.player1_info[0], self.player2_info[0],
+                                      self.player1_info[2], self.player2_info[2],
+                                      self.player1_info[1], self.player2_info[1])
