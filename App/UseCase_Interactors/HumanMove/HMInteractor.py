@@ -10,7 +10,7 @@ class HMInteractor:
     def __init__(self, game_repo: GameRepository) -> None:
         self.game_repo = game_repo
 
-    def human_make_move(self, input_data: HMInputData) -> HMOutputData | None:
+    def human_make_move(self, input_data: HMInputData):
         """Checks if the move is valid and if it is does it. If not it prints an error message
         and asks player for input again"""
         row = input_data.row_coord

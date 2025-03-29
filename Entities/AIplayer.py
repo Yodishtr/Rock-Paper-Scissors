@@ -8,7 +8,7 @@ from Entities.Player import Player
 class AIPlayer(Player):
     """Player object representing the Computer AI."""
 
-    def __init__(self, name: str, symbol: Symbol, strategy: str, race: str) -> None:
+    def __init__(self, name: str, symbol: Symbol, race: str, strategy: str) -> None:
         Player.__init__(name, symbol, race)
         self.strategy = strategy
 

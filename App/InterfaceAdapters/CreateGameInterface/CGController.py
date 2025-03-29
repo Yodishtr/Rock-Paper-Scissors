@@ -18,7 +18,7 @@ class CGController:
         board_dimension = tuple(int(x) for x in board_dimension_str.split(","))
         board_rows, board_columns = board_dimension[0], board_dimension[1]
 
-        player_1_str = input("Enter first player (eg AI, Robot, X): ")
+        player_1_str = input("Enter first player (eg AI (type), Robot (name), X (symbol)): ")
         player_1_tup = tuple(x for x in player_1_str.split(","))
         player1_type, player1_name, player1_symbol = (player_1_tup[0], player_1_tup[1],
                                                       player_1_tup[2])
