@@ -16,3 +16,4 @@ class AIPresenter():
         draw_or_not = output_data.draw_or_no
         updated_board = output_data.updated_board
         self.main_view.display_ai_move(ai_won_or_not, draw_or_not, updated_board)
+        print("Presenter sees updated_board:", updated_board)

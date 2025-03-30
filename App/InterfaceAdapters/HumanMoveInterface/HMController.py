@@ -21,7 +21,7 @@ class HMController:
 
     def _convert_to_board(self, mouse_x, mouse_y) -> tuple[int, int]:
         """Converts mouse input into the board map coordinates"""
-        row_coordinate = (mouse_x // 100) + 1
-        column_coordinate = (mouse_y // 100) + 1
+        row_coordinate = (mouse_y // 100) + 1
+        column_coordinate = (mouse_x // 100) + 1
 
         return (row_coordinate, column_coordinate)

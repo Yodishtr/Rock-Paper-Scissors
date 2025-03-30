@@ -72,6 +72,7 @@ class MainView():
         elif draw_or_not:
             print("damn you smart as the ai")
         else:
+            print("MainView is about to draw board with:", updated_board)
             self.render_board_and_players(updated_board, self.player1_info[0], self.player2_info[0],
                                           self.player1_info[2], self.player2_info[2],
                                           self.player1_info[1], self.player2_info[1])

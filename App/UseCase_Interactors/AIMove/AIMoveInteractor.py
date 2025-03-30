@@ -24,6 +24,9 @@ class AIMoveInteractor:
             ai_win_or_no = current_game.check_winning_combo()
             check_draw = current_game.board.check_board_full()
             self.game_repo.save_game(current_game)
+            print("AI placed symbol:", curr_player.symbol, "at cell:", move_to_make)
+            print("Board after AI move:", current_game.board.the_board)
+
             if ai_win_or_no == curr_player.symbol:
                 return AIOutputData(move_to_make, True, False, updated_board)
             elif ai_win_or_no is None and check_draw:

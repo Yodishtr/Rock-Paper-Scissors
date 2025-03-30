@@ -28,10 +28,10 @@ class CreateInteractor:
             player2 = Player(player2_tup[1], player2_tup[2], player2_tup[0])
         elif player2_tup[0].lower() == "ai":
             player1 = Player(player1_tup[1], player1_tup[2], player1_tup[0])
-            player2 = AIPlayer(player1_tup[1], player1_tup[2], player1_tup[0], input_data.strategy)
+            player2 = AIPlayer(player2_tup[1], player2_tup[2], player2_tup[0], input_data.strategy)
         else:
             player1 = Player(player1_tup[1], player1_tup[2], player1_tup[0])
-            player2 = Player(player1_tup[1], player1_tup[2], player1_tup[0])
+            player2 = Player(player2_tup[1], player2_tup[2], player2_tup[0])
 
         new_game = Game.Game(player1, player2, new_board)
         id_game_created = new_game.game_id

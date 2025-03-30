@@ -51,23 +51,56 @@ def main():
     restart_game_controller = RestartController(restart_interactor, restart_presenter,
                                                 current_game_id)
 
+    game_over = False
     # game
     running = True
     while running:
-        for event in pygame.event.get():
+        events = pygame.event.get()
+        for event in events:
+
             if event.type == QUIT:
                 running = False
-            elif event.type == MOUSEBUTTONDOWN:
-                mouse_x, mouse_y = event.pos
-                human_move_controller.handle_human_move(mouse_x, mouse_y)
+
+            elif event.type == MOUSEBUTTONDOWN and not game_over:
                 current_game = current_repo.find_game(current_game_id)
-                if current_game.check_winning_combo() is None and (not
-                   current_game.board.check_board_full()):
+
+                if current_game.current_player.race.lower() == "human":
+                    (mouse_x, mouse_y) = event.pos
+
+                    human_move_controller.handle_human_move(mouse_x, mouse_y)
+
+                    winner = current_game.check_winning_combo()
+                    if winner is not None:
+
+                        game_over = True
+                    elif current_game.board.check_board_full():
+
+                        game_over = True
+                    else:
+                        current_game.switch()
+
+        if not game_over:
+            current_game = current_repo.find_game(current_game_id)
+
+            if current_game.current_player.race.lower() == "ai":
+
+                ai_move_controller.handle_ai_move()
+
+                winner = current_game.check_winning_combo()
+                if winner is not None:
+
+                    game_over = True
+                elif current_game.board.check_board_full():
+
+                    game_over = True
+                else:
                     current_game.switch()
-                    if current_game.current_player.race.lower() == "ai":
-                        ai_move_controller.handle_ai_move()
+
+
+
 
         clock.tick(30)
+
     pygame.quit()
 
 
