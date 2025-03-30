@@ -15,4 +15,4 @@ class AIPresenter():
         ai_won_or_not = output_data.ai_win_or_lose
         draw_or_not = output_data.draw_or_no
         updated_board = output_data.updated_board
-        self.main_view(ai_won_or_not, draw_or_not, updated_board)
+        self.main_view.display_ai_move(ai_won_or_not, draw_or_not, updated_board)

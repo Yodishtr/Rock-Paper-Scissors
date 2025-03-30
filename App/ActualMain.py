@@ -48,7 +48,8 @@ def main():
     # other controllers
     ai_move_controller = AIController(ai_move_interactor, ai_presenter, current_game_id)
     human_move_controller = HMController(human_move_interactor, human_presenter, current_game_id)
-    restart_game_controller = RestartController(restart_interactor, restart_presenter, current_game_id)
+    restart_game_controller = RestartController(restart_interactor, restart_presenter,
+                                                current_game_id)
 
     # game
     running = True
@@ -62,11 +63,13 @@ def main():
                 current_game = current_repo.find_game(current_game_id)
                 if current_game.check_winning_combo() is None and (not
                    current_game.board.check_board_full()):
+                    current_game.switch()
                     if current_game.current_player.race.lower() == "ai":
                         ai_move_controller.handle_ai_move()
 
         clock.tick(30)
     pygame.quit()
+
 
 if __name__ == "__main__":
     main()

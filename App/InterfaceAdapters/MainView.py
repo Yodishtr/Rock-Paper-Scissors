@@ -32,7 +32,7 @@ class MainView():
 
         for col in range(max_column + 1):
             x = col * self.cell_size
-            pygame.draw.line(self.screen, black, (0, x), (max_row * self.cell_size, x), width=2)
+            pygame.draw.line(self.screen, black, (x, 0), (x, max_row * self.cell_size), width=2)
 
         for (row, col), symbol in board_map.items():
             if symbol is not None:

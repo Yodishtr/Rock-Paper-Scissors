@@ -26,7 +26,7 @@ class CGController:
         player_2_str = input("Enter second player (eg Human, BIGSMOKE, O): ")
         player_2_tup = tuple(x for x in player_2_str.split(","))
         player2_type, player2_name, player2_symbol = (player_2_tup[0], player_2_tup[1],
-                                                      player_2_tup[1])
+                                                      player_2_tup[2])
 
         if player1_type.lower() != "ai" and player2_type.lower() != "ai":
             strategy = ""

@@ -9,7 +9,7 @@ class AIPlayer(Player):
     """Player object representing the Computer AI."""
 
     def __init__(self, name: str, symbol: Symbol, race: str, strategy: str) -> None:
-        Player.__init__(name, symbol, race)
+        super().__init__(name, symbol, race)
         self.strategy = strategy
 
     def choose_move(self, game: Game) -> Tuple[int, int]:
